@@ -120,3 +120,4 @@ The function `processImageabilityDatasetTerm()` will create an `Imageset` object
 [2] A preliminary study on estimating word imageability labels using Web image data mining. Marc A. Kastner, Ichiro Ide, Yasutomo Kawanishi, Takatsugu Hirayama, Daisuke Deguchi, Hiroshi Murase. 言語処理学会第25回年次大会, March 2019.
 
 [3] Estimating the imageability of words by mining visual characteristics from crawled image data. Marc A. Kastner, Ichiro Ide, Frank Nack, Yasutomo Kawanishi, Takatsugu Hirayama, Daisuke Deguchi, Hiroshi Murase. Multimed Tools Appl, Published online, 32p, February 2020. doi: 10.1007/s11042-019-08571-4.
+# concretenessImages
