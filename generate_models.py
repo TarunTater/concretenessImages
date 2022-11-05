@@ -4,12 +4,18 @@
 ######################################################################
 
 # number of images for each word
-num_pics = 5000
+num_pics = 2
 
 # feature selection
 # select which features to for training
 from lib.Feature import Feature, FeatureType
-features = [FeatureType.YOLO_NUM_9000, FeatureType.YOLO_COMPOSITION, FeatureType.SURF, FeatureType.ColorHSV, FeatureType.GIST]
+features = [
+    # FeatureType.YOLO_NUM_9000, 
+    # FeatureType.YOLO_COMPOSITION,
+    # FeatureType.SURF,
+    FeatureType.ColorHSV,
+    # FeatureType.GIST
+    ]
 #features = [FeatureType.ColorHSV]
 
 ######################################################################
@@ -34,7 +40,9 @@ logging.basicConfig(format='[%(asctime)s %(levelname)s] %(message)s',
                     level=logging.DEBUG)
 
 gt_dataset = getImageabilityDataset()
-terms = getValidDatasets(5000)
+terms = getValidDatasets(2)  # Changed from 5000 to 2
+print(f"gt_dataset: {gt_dataset}")
+print(terms)
 
 blacklist = ["image", "heavy", "logo", "talk", "cream", "freedom", "texture", "balloon", "production", "elephant", "volcano", "month", "quality", "cactus", "jet", "sister", "empty", "clock", "wheel", "dessert", "date", "common", "among", "private", "earth", "entire", "bee", "era", "deer", "double", "bag", "king", "lamp", "machine", "opportunity", "match", "ago", "skate", "care", "pumpkin", "cologne", "battle", "block", "zombie", "movement", "wish", "neighborhood", "foundation", "frame", "album", "system", "magazine", "bench", "ring", "rice", "believe", "flood", "lacrosse", "garage", "bread", "indian", "writing", "fight", "glacier", "edge", "wave", "control", "bottom", "member", "oil", "fan", "native", "kingdom", "tunnel", "blossom", "moment", "angel", "mall", "collage", "permission", "recent", "variety", "contrast", "bottle", "mare", "dawn", "capture", "section", "mud", "engagement"]
 
@@ -65,7 +73,7 @@ logging.info("%i images each for %i terms" % (num_pics, num_terms))
 
 
 def normalizeImageability(value):
-    return ((value - 100) / 6)
+    return value #((value - 100) / 6)
 
 np.random.seed(3310) # for reproducibility
 
@@ -96,7 +104,7 @@ imageabilities.extend(imageability_test)
 # prepare right format
 train_X = np.array(vector_train)
 train_Y = np.array(imageability_train)
-
+print(f"Train_x: {train_X}, {train_Y}")
 test_X = np.array(vector_test)
 test_Y = np.array(imageability_test)
 
@@ -106,7 +114,7 @@ results_pred = []
 rf_predictors = []
 
 for i in range(10):
-   trees = RandomForestRegressor(n_estimators=100)
+   trees = RandomForestRegressor(n_estimators=2)
 
    # train
    y_tree = trees.fit(train_X, train_Y).predict(train_X)

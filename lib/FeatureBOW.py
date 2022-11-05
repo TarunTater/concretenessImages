@@ -100,7 +100,7 @@ class FeatureBOW(Feature):
 
         # print("bow vocab", np.shape(dictionary), dictionary)
 
-        if len(self.results) is 0:
+        if len(self.results) == 0:
             for s in self.image_set:
                 super().process(s, force=True, save=False)
 
@@ -120,6 +120,7 @@ class FeatureBOW(Feature):
                       "]")
 
         import progressbar
+        print(f"====> im_set.images in FeatureBOW = {len(im_set.images)}")
         bar = progressbar.ProgressBar(max_value=len(im_set.images))
         counter = 0
         bar.update(counter)
@@ -131,7 +132,7 @@ class FeatureBOW(Feature):
                 #print(file)
                 img = cv2.imread(file, 0)
             except Exception as e:
-                logging.error(str(e))
+                logging.error(f"Unexpected FeatureBOW: {str(e)}")
                 counter += 1
                 bar.update(counter)
                 continue

@@ -4,19 +4,25 @@
 ######################################################################
 
 # dataset location
-prefix = "/work/kastnerm/test"
+prefix = "/mount/arbeitsdaten/mudcat/Resources/Multimedia-Commons/imagibility_testing_dataset"
 
 # list of words
 # script expects a subfolder prefix/ for each word with num_images number of images
-words = ["a", "b"]
+words = ["pen", "shining", "apple", "world"]
 
 # number of images for each word
-num_images = 1000
+num_images = 2
 
 # feature selection
 # select which features to preprocess
 from lib.Feature import FeatureType
-features = [FeatureType.ColorHSV]
+features = [
+    FeatureType.ColorHSV,
+    # FeatureType.SURF, # Surf features are now licensed. Cannot be used directly. 
+    # FeatureType.GIST,
+    # FeatureType.YOLO_NUM_9000,
+    # FeatureType.YOLO_COMPOSITION
+    ]
 
 # all features needed for pretrained models: 
 # features = [FeatureType.ColorHSV, FeatureType.SURF, FeatureType.GIST, FeatureType.YOLO_NUM_9000, FeatureType.YOLO_COMPOSITION]

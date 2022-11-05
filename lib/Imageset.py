@@ -12,7 +12,7 @@ hostname = socket.gethostname()
 #    logging.debug("[imageset.py] detected workstation")
 #    DATASET_LOCATION = "/ssdwork/"
 
-DATASET_LOCATION = "/work/kastnerm/"
+DATASET_LOCATION = "/mount/arbeitsdaten/mudcat/Resources/Multimedia-Commons/imagibility_testing_dataset"
 
 def get_real_filename(filen):
     #print(filen)

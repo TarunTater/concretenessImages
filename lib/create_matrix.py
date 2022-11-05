@@ -55,10 +55,13 @@ def getVisualVector(imset, featureType):
         from lib.Feature import FeatureType
         from lib.Feature import Feature
         if(featureType is FeatureType.SURF):
+            print(f"imset {imset} from from if statement")
             feature = Feature.factory(type=featureType, im_set=[imset], trained_hash=pretrainedBoW[1], trained_directory=pretrainedBoW[0])
         else:
+            print(f"imset {imset} from from else statement")
             feature = Feature.factory(type=featureType, im_set=[imset])
         feature.process()
+        print(f"Got features")
 
         return feature.results
     except Exception as e:
@@ -121,6 +124,7 @@ def loadEigenvalues(term, feature, num_images):
     #print(term, feature, num_images, filename)
     import pickle
     try:
+        print(f"Looking for eigenvalue cache in {filename}")
         with open(filename, 'rb') as handle:
             data = pickle.load(handle)
     except FileNotFoundError:
@@ -150,6 +154,7 @@ def processImageSet(term, files, features, returnEigenvalues):
             imset = Imageset(term, files)
             print(term, "get visual vectors")
             visvec = getVisualVector(imset, feature)
+            print(f"==> Got visvec term. {visvec}")
             if visvec is None:
                 print(term, "failed to get vector")
                 return None
@@ -205,6 +210,7 @@ def getValidDatasets(num_images):
 
 def getImageability(term):
     imageability = getImageabilityDataset()
+    # print(f"Imageability are: {imageability}")
     value = imageability[term]
     return value
 

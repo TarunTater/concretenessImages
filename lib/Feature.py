@@ -109,7 +109,7 @@ class Feature(metaclass=ABCMeta):
         elif type == FeatureType.YOLO_NUM or type == FeatureType.YOLO_NUM_9000 or type == FeatureType.YOLO_COMPOSITION:
             return lib.FeatureYOLO.FeatureYOLO(type, im_set)
 
-    def __init__(self, type: FeatureType, image_set: Imageset, load=True):
+    def __init__(self, type: FeatureType, image_set: Imageset, load=False):
         self.image_set = []
         self.image_set.extend(image_set)
         self.results = []
@@ -223,10 +223,10 @@ class Feature(metaclass=ABCMeta):
         #              "[", image_set.start,
         #              ",", image_set.end,
         #              "]")
-
-        bar = progressbar.ProgressBar(max_value=len(image_set.images))
+        print(f"---> Imageliligi {len(image_set.images)}")
+        # bar = progressbar.ProgressBar(max_value=len(image_set.images))
         counter = 0
-        bar.update(counter)
+        # bar.update(counter)
         #from tqdm import tqdm
         for ifile in image_set.images:#, desc="feature extraction", leave=True, mininterval=0):
             ifile = get_real_filename(ifile)
@@ -236,7 +236,7 @@ class Feature(metaclass=ABCMeta):
 
             self.results.append(file_results)
             counter += 1
-            bar.update(counter)
+            # bar.update(counter)
 
         if save:
             self.save()

@@ -1,0 +1,9 @@
+APPLE
+SHINING
+PEN
+WORLD
+
+4
+2
+5
+3

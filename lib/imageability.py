@@ -57,16 +57,18 @@ def getCortese():
     assert len(item) == len(meanRT) == len(sdRT) == len(meanR) == len(sdR)
     for i, _ in enumerate(item):
         cortese[item[i]] = [meanRT[i], sdRT[i], meanR[i], sdR[i]]
-
+    print(f"From cortese")
+    for it, mrt, sdrt, mr, sdr in zip(item, meanRT, sdRT, meanR, sdR):
+        print(it, mrt, sdrt, mr, sdr)
     # print(cortese)
     return cortese
 
 
 def getReilly():
-    filename = "data/reilly.txt"
+    filename = "data/reilly_1.txt"
 
     with open(filename) as f:
-        content = f.readlines()
+        content =  f.readlines() #["apple", "pen", "shining", "world"] #f.readlines()
 
     content = [x.strip() for x in content]
 
@@ -74,7 +76,7 @@ def getReilly():
     reilly = dict()
     item = []
     vals = []
-
+    # print(content)
     for l in content:
         if l == "":
             mode = mode + 1
@@ -85,7 +87,9 @@ def getReilly():
 
         if mode == 1:
             vals.append(int(l))
-
+    # print(f"From getReilly, we obtained: ")
+    # for v, it in zip(vals, item):
+    #     print(v, it)
     for i, _ in enumerate(item):
         reilly[item[i]] = vals[i]
 
@@ -93,7 +97,7 @@ def getReilly():
 
 
 def getImageability():
-    cortese = getCortese()
+    # cortese = getCortese()
     reilly = getReilly()
 
     imageability = dict()
@@ -102,13 +106,13 @@ def getImageability():
         #print(k,v)
         imageability[k] = v
 
-    for k, v in cortese.items():
-        #print(k,v)
-        try: 
-            if(imageability[k]):
-                imageability[k] = int((imageability[k] + v[2]) / 2)
-        except:
-            imageability[k] = v[2]
+    # for k, v in cortese.items():
+    #     #print(k,v)
+    #     try: 
+    #         if(imageability[k]):
+    #             imageability[k] = int((imageability[k] + v[2]) / 2)
+    #     except:
+    #         imageability[k] = v[2]
 
     #s = [(k, imageability[k]) for k in sorted(imageability, key=imageability.get, reverse=False)]
     #for k, v in s:

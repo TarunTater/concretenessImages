@@ -84,7 +84,7 @@ def analyzeData(data, image_threshold):
 
 
 if __name__ == '__main__':
-    data = loadDict()
+    data = loadDict()  # Loads the datset from the json 
     limits = [2500, 3000, 4000, 5000, 6000, 7000, 7500, 8000, 9000, 10000, 15000, 20000, 25000, 30000, 50000]
-    for limit in limits:
+    for limit in limits:  # For all limits, checking the number of images if exists. 
         print(format(limit, ">7n"), "images per term:", format(analyzeData(data, limit), ">5n"), "words available")
